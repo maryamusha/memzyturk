@@ -1,96 +1,198 @@
-/* General page setup */
+/* Base styles */
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #121212; /* Dark, sleek background */
-    color: white;
-    margin: 0;
-    padding: 0;
-}
-
-/* Header styling */
-header {
-    background-color: #1a1a1a; /* Darker background for header */
-    color: #4fc3ff; /* Lighter royal blue */
+    background-color: #e6e6fa; /* Light purple outer background */
+    color: #333;
     text-align: center;
-    padding: 2rem;
-    border-bottom: 5px solid #b3c6ff; /* Royal blue border */
+    margin: 0;
+    padding: 20px;
 }
 
 header h1 {
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
     font-weight: 600;
+    color: #6a0dad; /* Purple color */
+    text-shadow: 1px 1px 2px #d2b48c;
 }
 
-header p {
+section h2 {
+    font-size: 2rem;
+    color: #8b008b; /* Deeper purple for headers */
+}
+
+section p {
     font-size: 1.2rem;
-    font-weight: 400;
-    color: #ffffff; /* White text */
-}
-
-/* Birthday message section */
-.birthday-message {
-    text-align: center;
-    padding: 2rem;
-    background-color: #1e1e1e;
-    margin-bottom: 1.5rem;
-    font-size: 1.3rem;
-    color: #d4d4d4; /* Soft, elegant white */
-    border: 2px solid #4fc3ff; /* Lighter royal blue border */
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-image: url('assets/crumpled-paper.jpg'); /* Crumpled paper texture for the paragraph */
+    background-size: cover;
     border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.birthday-message p {
-    margin: 1rem 0;
+/* Balloons container */
+.balloons-container {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: none;
 }
 
-/* Gallery styling */
+.balloon {
+    position: absolute;
+    bottom: -150px;
+    width: 80px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: red;
+    animation: balloon-rise 8s ease-in-out infinite;
+    z-index: 2;
+}
+
+.red-balloon {
+    background-color: #ff4c4c;
+    left: 20%;
+}
+
+.purple-balloon {
+    background-color: #6a0dad;
+    left: 70%;
+}
+
+@keyframes balloon-rise {
+    0% {
+        bottom: -150px;
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        bottom: 100%;
+        opacity: 0;
+    }
+}
+
+/* Fading balloons after 10 seconds */
+.balloons-container {
+    animation: fade-out 10s ease-in forwards;
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+/* Gallery styles */
 .gallery {
-    text-align: center;
-    padding: 2rem;
-    background-color: #141414;
-    border-top: 5px solid #b3c6ff; /* Royal blue border at the top */
+    margin-top: 40px;
+}
+
+.photos {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 .photos img {
-    width: 30%;
-    margin: 1rem;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
-    border: 5px solid #4fc3ff; /* Lighter royal blue border */
+    width: auto;
+    height: 250px;
+    border: 10px solid white; /* Thicker white border for Polaroid look */
+    border-bottom: 30px solid white; /* Thicker bottom part like Polaroids */
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    animation: fade-in 1s ease-in-out forwards;
+    animation-delay: calc(0.5s * var(--i)); /* Staggered animation for each photo */
 }
 
+.photos img:nth-child(1) {
+    --i: 1;
+}
+
+.photos img:nth-child(2) {
+    --i: 2;
+}
+
+.photos img:nth-child(3) {
+    --i: 3;
+}
+
+/* Hover effect to make photos slightly bigger */
 .photos img:hover {
-    transform: scale(1.1);
+    transform: scale(1.05); /* Slightly bigger on hover */
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.4); /* Enhance shadow for hover */
 }
 
-/* Video section styling */
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Video section */
 .video-section {
-    text-align: center;
-    padding: 2rem;
-    background-color: #1a1a1a;
+    margin-top: 40px;
 }
 
-video {
-    width: 80%;
-    border-radius: 10px;
-    border: 5px solid #4fc3ff; /* Lighter royal blue border */
+.video-section video {
+    width: 600px;
+    height: auto;
+    border: 10px solid white; /* Thicker white border for Polaroid effect */
+    border-bottom: 30px solid white;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for video */
+.video-section video:hover {
+    transform: scale(1.05); /* Slightly bigger on hover */
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 /* Footer */
 footer {
-    background-color: #0a0a0a;
-    color: white;
-    text-align: center;
-    padding: 1rem 0;
+    margin-top: 40px;
+    font-size: 1rem;
+    color: #8b4513;
 }
 
-/* Balloons animation */
-.balloons-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
+/* Responsive font sizes for iPhone */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    section h2 {
+        font-size: 1.5rem;
+    }
+
+    section p {
+        font-size: 1rem;
+        padding: 15px;
+    }
+
+    .photos img {
+        width: 100%; /* Ensure images fit the screen on mobile devices */
+        height: auto; /* Keep the image ratio intact on smaller screens */
+    }
+
+    .video-section video {
+        width: 100%;
+    }
 }
